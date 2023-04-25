@@ -33,19 +33,26 @@ class question_list(APIView):
 
 
 
-class QA_list(APIView):
+class answer_list(APIView):
     oQuestions = []
     oAnswer = []
-    aqList = []
+    def get(self, request):
+        self.oQuestions = []
+        questions = Question.objects.all()
+        for question in questions:
+            if question.answer_set.all():
+                self.oQuestions.append(question)
+                qOserializer = QuestionSerializer(self.oQuestions, many=True)
+        return Response(qOserializer.data)
     
     def post(self, request):
+        self.oAnswer = []
         questions = Question.objects.all()
         answers = Answer.objects.all()
         for question in questions:
             if question.answer_set.all():
-                self.aqList.append(question)
                 for answer in answers:
                     if question.answer_set.get() == answer:
-                        self.aqList.append(answer)
-                qaOserializer = AnswerSerializer(self.aqList, many=True)
-        return Response(qaOserializer.data)
+                        self.oAnswer.append(answer)
+                aOserializer = AnswerSerializer(self.oAnswer, many=True)
+        return Response(aOserializer.data)
