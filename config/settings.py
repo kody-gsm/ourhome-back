@@ -147,10 +147,3 @@ CORS_ORIGIN_WHITELIST = ('http://127.0.0.1:3000', 'http://localhost:3000')
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-
-
-CSRF_TRUSTED_ORIGINS = (
-    'https://port-0-kody-e9btb72blgp2nnbr.sel3.cloudtype.app/'
-    'https://port-0-kody-e9btb72blgp2nnbr.sel3.cloudtype.app/admin/'
-    'https://port-0-kody-e9btb72blgp2nnbr.sel3.cloudtype.app/admin/login/'
-)
